@@ -18,8 +18,8 @@ public class ClientController {
     private ClientService clientService; // bean
 
     // TODO: 27/08/2023 envoie objet client et return ce client en response
-    @PostMapping(value = SLASH + PATH_VARIABLE_NAME)
-    public ResponseEntity<Client> createClientByName(@PathVariable String name) {
+    @PostMapping(value = SLASH)
+    public ResponseEntity<Client> createClientByName(@RequestBody String name) {
         return ResponseEntity.ok(clientService.createClientByName(name));
     }
 
