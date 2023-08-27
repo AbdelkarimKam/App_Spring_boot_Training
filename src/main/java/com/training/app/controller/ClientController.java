@@ -8,25 +8,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.training.app.controller.tools.Constant.*;
+
 @RestController
-@RequestMapping("/banque")
+@RequestMapping(ROOT + SLASH + CLIENT)
 public class ClientController {
 
     @Autowired
     private ClientService clientService; // bean
 
     // TODO: 27/08/2023 envoie objet client et return ce client en response
-    @PostMapping(value = "/client/{name}")
+    @PostMapping(value = SLASH + PATH_VARIABLE_NAME)
     public ResponseEntity<Client> createClientByName(@PathVariable String name) {
         return ResponseEntity.ok(clientService.createClientByName(name));
     }
 
-    @GetMapping("/client")
+    @GetMapping(SLASH)
     public ResponseEntity<Client> getClientById(@RequestParam long id) {
         return ResponseEntity.ok(clientService.getClientById(id));
     }
 
-    @GetMapping("/clients")
+    @GetMapping(SLASH + CLIENTS)
     public ResponseEntity<List<Client>> getClients() {
         return ResponseEntity.ok(clientService.getClients());
     }
