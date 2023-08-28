@@ -1,23 +1,23 @@
 package com.training.app.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
+@Document
 public class Client {
-    private long id;
+    @Id
+    private String id;
     private String name;
     private Compte compte;
 
-    public Client(long id, String name) {
-        this.id=id;
-        this.name=name;
+    public Client(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

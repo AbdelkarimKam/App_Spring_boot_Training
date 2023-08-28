@@ -19,12 +19,12 @@ public class ClientController {
 
     // TODO: 27/08/2023 envoie objet client et return ce client en response
     @PostMapping(value = SLASH)
-    public ResponseEntity<Client> createClientByName(@RequestBody String name) {
-        return ResponseEntity.ok(clientService.createClientByName(name));
+    public ResponseEntity<Client> createClient(@RequestBody Client client) {
+        return ResponseEntity.ok(clientService.createClient(client));
     }
 
     @GetMapping(SLASH)
-    public ResponseEntity<Client> getClientById(@RequestParam long id) {
+    public ResponseEntity<Client> getClientById(@RequestParam String id) {
         return ResponseEntity.ok(clientService.getClientById(id));
     }
 

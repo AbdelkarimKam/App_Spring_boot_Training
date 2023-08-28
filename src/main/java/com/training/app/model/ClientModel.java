@@ -1,37 +1,26 @@
 package com.training.app.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Component
 public class ClientModel {
-    List<Client> clients = new ArrayList<>();
+    @Autowired
+    private ClientRepository clientRepository;
 
-    {
-        // clients de base
-        clients.add(new Client(1, "Aziz"));
-        clients.add(new Client(2, "Nada"));
-        clients.add(new Client(1, "Karim"));
+    public Client createClient(Client client) {
+        return clientRepository.insert(client);
     }
 
-    public Client createClient(String name) {
-        Client client = new Client(new Random().nextLong(), name);
-        clients.add(client);
-        return client;
-    }
-
-    public Client getClientByIdFromDatabase(long id) {
-        return clients
-                .stream()
-                .filter(client -> client.getId() == id)
-                .findFirst()
-                .orElse(null);
+    public Client getClientByIdFromDatabase(String id) {
+        if (clientRepository.findById(id).isEmpty())
+            return null;
+        return clientRepository.findById(id).get();
     }
 
     public List<Client> getClientsFromDataBase() {
-        return clients;
+        return clientRepository.findAll();
     }
 }
