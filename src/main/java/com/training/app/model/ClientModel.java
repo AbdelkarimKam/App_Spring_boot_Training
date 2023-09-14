@@ -20,7 +20,7 @@ public class ClientModel {
         return clientRepository.insert(client);
     }
 
-    public Client getClientByIdFromDatabase(String id) {
+    public Client getClientById(String id) {
         try {
             return clientRepository.findById(id).get();
         } catch (NoSuchElementException e) {
@@ -30,7 +30,15 @@ public class ClientModel {
         }
     }
 
-    public List<Client> getClientsFromDataBase() {
+    public List<Client> getClients() {
         return clientRepository.findAll();
+    }
+
+    public Client updateClient(Client client) {
+        return clientRepository.save(client);
+    }
+
+    public void deleteClient(String id) {
+        clientRepository.deleteById(id);
     }
 }
