@@ -13,15 +13,23 @@ public class ClientService {
     @Autowired
     private ClientModel clientModel;
 
-    public Client createClientByName(String name) {
-        return clientModel.createClient(name);
+    public Client createClient(Client client) {
+        return clientModel.createClient(client);
     }
 
-    public Client getClientById(long id) {
-        return clientModel.getClientByIdFromDatabase(id);
+    public Client getClientById(String id) {
+        return clientModel.getClientById(id);
     }
 
     public List<Client> getClients() {
-        return clientModel.getClientsFromDataBase();
+        return clientModel.getClients();
+    }
+
+    public Client updateClient(Client client) {
+        return clientModel.updateClient(client);
+    }
+
+    public void deleteClient(String id) {
+        clientModel.deleteClient(id);
     }
 }
